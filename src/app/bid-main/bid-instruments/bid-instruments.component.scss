@@ -1,0 +1,164 @@
+
+
+
+.home-splash {
+	position: relative;
+	display: flex;
+	align-items: stretch;
+	margin-bottom: 25px;
+	border-bottom: 1px solid #000000;
+	padding-bottom: 25px;
+
+	> ._info {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		flex-grow: 1;
+
+		> div {
+			margin-bottom:25px;
+			padding: 35px 0;
+		}
+
+		._title {
+			font-size: 45px;
+		}
+
+		._description {
+			font-size: 18px;
+		}
+	}
+
+	> ._image {
+		margin-left: 45px;
+		background: no-repeat center;
+
+		> img {
+			max-height: 300px;
+			min-height: 300px;
+		}
+	}
+
+	> ._filters {
+		left: 0;
+		position: absolute;
+		bottom: -20px;
+
+		> ._top {
+			font-size: 13px;
+			font-weight: 500;
+			padding: 0 12px 8px 0;
+		}
+
+		> ._bottom {
+			width:230px;
+			display:flex;
+			align-items:center;
+			color:#fff;
+			> input {
+				height: 40px;
+				background: #000;
+				border-width: 0;
+				background: #000;
+				color: #fff;
+				
+
+				&::-webkit-input-placeholder {
+					font-size:12px;
+					color:rgba(255,255,255,0.7);
+				}
+			}
+			>._action{
+				padding-right:12px;
+			}
+		}
+	}
+}
+
+._owl-container{
+	position:relative;
+	>h2{
+		position:absolute;
+		top:10px;
+		left: 0;
+		z-index:3;
+		color:rgba(0,0,0,0.5);
+	}
+}
+
+@media (max-width: 800px) {
+	.home-splash {
+		flex-direction: column-reverse;
+
+		._image {
+			margin-left: 0;
+
+			> img {
+				max-width: 100%;
+				min-height: unset;
+			}
+		}
+	}
+}
+
+.tbl-ins-info {
+	th {
+		font-weight: 300;
+		width: 100%;
+	}
+
+	td {
+		min-width: 133px;
+	}
+}
+
+
+
+
+
+
+
+@media (min-width: 576px) {
+	.card-deck {
+		margin-right: -15px;
+		margin-left: -15px;
+
+		.card {
+			flex: 0 0 calc(50% - 30px);
+		}
+	}
+}
+
+@media (min-width: 1000px) {
+	.card-deck {
+		margin-right: -15px;
+		margin-left: -15px;
+
+		.card {
+			flex: 0 0 calc(33.33333333% - 30px);
+		}
+	}
+}
+
+
+
+
+@media (min-width: 1200px) {
+	.image-carousel {
+		margin-right: -15px;
+		margin-left: -15px;
+
+		.card {
+			flex: 0 0 calc(25% - 30px);
+		}
+	}
+}
+
+
+a{
+	cursor:pointer;
+	&:hover{
+		text-decoration: underline;
+	}
+}
+

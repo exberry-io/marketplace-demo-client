@@ -1,0 +1,192 @@
+
+<div class="layout-container _body" *ngIf="instrument">
+
+	<div class="_top-layout" @fadeIn>
+		<div class="carousel-container">
+
+			<mat-tab-group class="image-carousel" [(selectedIndex)]="imgStep">
+				<mat-tab label="First" *ngFor="let img of instrument.images">
+					<div class="_img" [ngStyle]="{'background-image': 'url(' + img + ')'}"></div>
+				</mat-tab>
+			</mat-tab-group>
+			<ng-container  *ngIf="instrument.images.length > 1">
+				<div class="_btn-slider _left" (click)="moveSlider(imgStep - 1)"></div>
+				<div class="_btn-slider _right" (click)="moveSlider(imgStep + 1)"></div>
+			</ng-container>
+
+			<div class="carousel-container-bottom">
+				<div>{{instrument?.description}}</div>
+				<div class="_c-controls">
+					<ng-container *ngIf="instrument.images.length > 1">
+						<div *ngFor="let img of instrument.images; let i = index" (click)="moveSlider(i)" [class.active]="imgStep == i"></div>
+					</ng-container>
+				</div>
+			</div>
+		</div>
+		<div class="place-order-container">
+			<!--START INSTRUMENT INFO-->
+			<div class="_top">
+				<table class="tbl-ins-info">
+					<tr>
+						<th class="font-500">{{instrument.key}}</th>
+						<td class="text-muted-light">Rating</td>
+					</tr>
+					<tr>
+						<th class="text-dbl" style="vertical-align:middle;">{{instrument.name}}</th>
+						<td class="text-dbl" [ngStyle]="appService.$brand.foreStyle">{{instrument.rating}}</td>
+					</tr>
+					<tr>
+						<th>Last Price</th>
+						<td class="text-black">{{instrument.marketRate | iDecimal:'p':instrument.decimals}}</td>
+					</tr>
+					<tr>
+						<th>Investors</th>
+						<td class="text-black">{{instrument.investors}}</td>
+					</tr>
+					<tr>
+						<th>Invested</th>
+						<td class="text-black">{{instrument.invested}}%</td>
+					</tr>
+				</table>
+			</div>
+			<!--END INSTRUMENT INFO-->
+			<!--START PLACE ORDER-->
+			<div class="_bottom" [ngStyle]="appService.$brand.backStyle">
+				<form #accountForm="ngForm" class="exchange-place-order">
+					<div class="_inner">
+						<div class="order-value-type">
+							<button type="button" mat-button (click)="newOrder.orderType = 'Limit'" [class.selected]="newOrder.orderType == 'Limit'">
+								Limit
+							</button>
+							<button type="button" mat-button (click)="newOrder.orderType = 'Market'" [class.selected]="newOrder.orderType == 'Market'">
+								Market
+							</button>
+						</div>
+
+						<div class="order-values">
+							<div class="row row-narrow">
+								<div class="col">
+									<div class="form-group" style="min-width:120px">
+										<label>Units</label>
+										<input type="number"
+											   class="form-control numeric"
+											   #fUnits="ngModel"
+											   [class.is-invalid]="fUnits.dirty && fUnits.errors?.required"
+											   [(ngModel)]="newOrder.quantity" name="quantity" required min="1" />
+									</div>
+								</div>
+								<div class="col" *ngIf="newOrder.orderType == 'Limit'">
+									<div class="form-group" style="min-width:120px">
+										<label>Price</label>
+										<input type="number" class="form-control numeric"
+											   #fPrice="ngModel"
+											   [class.is-invalid]="fPrice.dirty && fPrice.errors?.required"
+											   [(ngModel)]="newOrder.price" name="price" required min="1" />
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="order-action-type">
+							<div class="lowest-price">
+								<div class="_cap">Lowest Price Available</div>
+								<div class="_val">&nbsp;{{instrument.lowestPrice | iDecimal:'p':instrument.decimals}}</div>
+							</div>
+							<div class="row row-narrow">
+								<div class="col">
+									<button type="submit" mat-flat-button color="primary" class="btn-block bt-dark" (click)="placeOrder('Buy', accountForm)">
+										Buy
+									</button>
+								</div>
+								<div class="col">
+									<button type="submit" mat-flat-button class="btn-block" (click)="placeOrder('Sell', accountForm)">
+										Sell
+									</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+
+				<div class="loading-book" [class.active]="placingOrder">
+					<mat-spinner strokeWidth="5" diameter="90"></mat-spinner>
+				</div>
+
+			</div>
+			<!--END PLACE ORDER-->
+		</div>
+
+
+	</div>
+
+
+	<div class="card-deck">
+		<div class="card _instrument-card" @cardAnimation>
+			<div class="card-header">Order Book</div>
+			<div class="card-body _order-book" style="min-height:250px; ">
+				<table class="table table-borderless ob-buy">
+					<thead>
+						<tr>
+							<th>Volume</th>
+							<th>Bid</th>
+							<th>&nbsp;</th>
+						</tr>
+					</thead>
+					<tbody class="trend-up-fg">
+						<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Buy' } | reverseOrder | slice:0:8" (click)="injectOrder(row)" >
+							<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
+							<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
+							<td class="_bar">
+								<div class="bar">
+									<div class="bar-content trend-up-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
+								</div>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<table class="table table-borderless ob-sell">
+					<thead>
+						<tr>
+							<th>&nbsp;</th>
+							<th>Ask</th>
+							<th>Volume</th>
+						</tr>
+					</thead>
+					<tbody class="trend-down-fg">
+						<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Sell' } | slice:0:8" (click)="injectOrder(row)" >
+							<td class="_bar">
+								<div class="bar">
+									<div class="bar-content trend-down-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
+								</div>
+							</td>
+							<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
+							<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+
+		<div class="card _instrument-card" @cardAnimation>
+			<div class="card-header">History</div>
+			<div class="card-body">
+				<div style="position:relative; background:yellow; height:100%; overflow:hidden">
+					<highcharts-chart [Highcharts]="Highcharts"
+									  [options]="chartOptions"
+									  (chartInstance)="logChartInstance($event)"
+									  style="width: 100%; height: 100%; min-height:400px; display: block;position:relative; overflow:hidden">
+
+					</highcharts-chart>
+				</div>
+
+			</div>
+		</div>
+
+	</div>
+
+</div>
+
+
+
+

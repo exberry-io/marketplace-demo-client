@@ -1,0 +1,15 @@
+
+<ng-template #blockTemplate>
+	<div class="block-ui-template">
+		<ng-container [ngSwitch]="appService.appLoaderConfig?.type">
+			<img *ngSwitchCase="'image'" [src]="appService.appLoaderConfig.url" class="image-spinner {{appService.appLoaderConfig.animation}}" />
+			<div *ngSwitchDefault class="triple-spinner"></div>
+		</ng-container>
+	</div>
+</ng-template>
+
+<block-ui [template]="blockTemplate">
+	<router-outlet *ngIf="!loading"></router-outlet>
+</block-ui>
+
+

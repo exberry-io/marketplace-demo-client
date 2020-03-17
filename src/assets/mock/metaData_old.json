@@ -1,0 +1,169 @@
+[
+	{
+		"value": {
+			"wsEndPoint": "wss://exchange.om2.com",
+			"brand": {
+				"bidColor": "#009A34",
+				"askColor": "#FF7878",
+				"ratingColor": "#FF7878",
+				"panelColor": "rgba(255, 193, 193, 0.65)"
+			},
+			"instruments": [
+				{
+					"chartSumbol": "COINBASE:BTCUSD",
+					"key": "INS1",
+					"instrumentInstance": {
+						"name": "Instrument 1",
+						"rounding": "down",
+						"decimalPrecision": "3",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna vel, dapibus mi. Maecenas vestibulum ipsum a nisi molestie bibendum. Nunc eu arcu eget mi aliquet vulputate. Nunc in sem sed massa luctus congue et quis est. Suspendisse eget arcu interdum, eleifend mauris sit amet, sollicitudin mi. Vestibulum placerat dapibus tempus. Maecenas lobortis egestas nisl, et placerat urna imperdiet at.",
+						"rating": 8.9,
+						"investors": 711,
+						"invested": 55,
+						"images": [
+							{
+								"url": "http://my-image-1.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							},
+							{
+								"url": "http://my-image-2.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							}
+						]
+					},
+					"trendValue": 5.3
+				},
+				{
+					"chartSumbol": "COINBASE:BTCUSD",
+					"key": "INS2",
+					"instrumentInstance": {
+						"name": "Instrument 2",
+						"rounding": "down",
+						"decimalPrecision": "4",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna vel, dapibus mi. Maecenas vestibulum ipsum a nisi molestie bibendum. Nunc eu arcu eget mi aliquet vulputate. Nunc in sem sed massa luctus congue et quis est. Suspendisse eget arcu interdum, eleifend mauris sit amet, sollicitudin mi. Vestibulum placerat dapibus tempus. Maecenas lobortis egestas nisl, et placerat urna imperdiet at.",
+						"rating": 8.9,
+						"investors": 711,
+						"invested": 55,
+						"images": [
+							{
+								"url": "http://my-image-1.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							},
+							{
+								"url": "http://my-image-2.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							}
+						]
+					},
+					"trendValue": 5.3
+				},
+				{
+					"chartSumbol": "COINBASE:BTCUSD",
+					"key": "INS3",
+					"instrumentInstance": {
+						"name": "Instrument 3",
+						"rounding": "down",
+						"decimalPrecision": "3",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna vel, dapibus mi. Maecenas vestibulum ipsum a nisi molestie bibendum. Nunc eu arcu eget mi aliquet vulputate. Nunc in sem sed massa luctus congue et quis est. Suspendisse eget arcu interdum, eleifend mauris sit amet, sollicitudin mi. Vestibulum placerat dapibus tempus. Maecenas lobortis egestas nisl, et placerat urna imperdiet at.",
+						"rating": 8.9,
+						"investors": 711,
+						"invested": 55,
+						"images": [
+							{
+								"url": "http://my-image-1.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							},
+							{
+								"url": "http://my-image-2.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							}
+						]
+
+					},
+					"trendValue": 5.3
+				},
+				{
+					"chartSumbol": "COINBASE:BTCUSD",
+					"key": "INS4",
+					"instrumentInstance": {
+						"name": "Instrument 4",
+						"rounding": "down",
+						"decimalPrecision": "8",
+						"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna vel, dapibus mi. Maecenas vestibulum ipsum a nisi molestie bibendum. Nunc eu arcu eget mi aliquet vulputate. Nunc in sem sed massa luctus congue et quis est. Suspendisse eget arcu interdum, eleifend mauris sit amet, sollicitudin mi. Vestibulum placerat dapibus tempus. Maecenas lobortis egestas nisl, et placerat urna imperdiet at.",
+						"rating": 8.9,
+						"investors": 711,
+						"invested": 55,
+						"images": [
+							{
+								"url": "http://my-image-1.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							},
+							{
+								"url": "http://my-image-2.jpg",
+								"description": "Lorem ipsum dolor sit amet"
+							}
+						]
+
+					},
+					"trendValue": 5.3
+				},
+				{
+					"chartSumbol": "FX_IDC:XAUUSD",
+					"key": "XAUUSD",
+					"instrumentInstance": {
+						"name": "Gold",
+						"rounding": "down",
+						"instrument": "XAU",
+						"decimalPrecision": "2"
+					},
+					"trendValue": -3.3
+				},
+				{
+					"chartSumbol": "TVC:USOIL",
+					"key": "OILUSD",
+					"instrumentInstance": {
+						"name": "USOIL",
+						"rounding": "down",
+						"instrument": "OIL",
+						"decimalPrecision": "2"
+					},
+					"trendValue": 3.3
+				},
+				{
+					"chartSumbol": "TVC:UKOIL",
+					"key": "UKOILUSD",
+					"instrumentInstance": {
+						"name": "UKOIL",
+						"rounding": "down",
+						"instrument": "OIL",
+						"decimalPrecision": "2"
+					},
+					"trendValue": -4.3
+				}
+			],
+			"secret": "mcrrSDn00tEvi44H2pl58rAHEI7pbfS3mgsSYDWkm4vmrGRQ7Rhm4dP27ZAz",
+			"apiKey": "pZnMFPxf6dGTCr2lElwJyv5qaHjHcPde4wT2bQ65q9Gt0cNZwMgBHx5hT253",
+			"users": [
+				{
+					"name": "Saul Simon",
+					"ipAddress": "127.0.0.1",
+					"currency": "EUR",
+					"userId": "1"
+				},
+				{
+					"name": "Moshe Levi",
+					"ipAddress": "127.0.0.1",
+					"currency": "EUR",
+					"userId": "2"
+				},
+				{
+					"name": "Yair Gat",
+					"ipAddress": "127.0.0.1",
+					"currency": "EUR",
+					"userId": "100"
+				}
+			]
+		},
+		"key": "metaData.json"
+	}
+]

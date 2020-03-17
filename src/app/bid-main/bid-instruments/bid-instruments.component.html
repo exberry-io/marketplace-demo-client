@@ -1,0 +1,97 @@
+
+
+<div class="layout-container _body">
+	<div class="home-splash" @fadeIn>
+		<div class="_info">
+			<div >
+				<div class="_title" [ngStyle]="appService.$brand.foreStyle">
+					<span>{{bidService.topic.home.title}}</span>
+				</div>
+				<div class="_description">{{bidService.topic.home.description}}</div>
+			</div>
+		</div>
+
+		<div class="_image">
+			<img [src]="bidService.topic.home.image" />
+		</div>
+
+		<div class="_filters">
+			<div class="_top">Choose your Asset</div>
+			<div class="_bottom" [ngStyle]="appService.$brand.actionStyle">
+				<input type="text"
+					   class="form-control _no-focus"
+					   placeholder="Filter by"
+					   [(ngModel)]="searchTerm"
+					   [ngStyle]="appService.$brand.actionStyle"
+					   #txtSearch
+					   (keyup)='filterInstruments(txtSearch.value)' />
+				<div class="_action" (click)="clearSearch()">
+					<mat-icon class="md" [svgIcon]="searchTerm ? 'times' : 'search'"></mat-icon>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="_owl-container">
+		<h2 @fadeIn *ngIf="!instruments?.length">{{'No Results Found'}}</h2>
+		<owl-carousel-o  [options]="customOptions" class="instruments-carousel">
+			<ng-container *ngFor="let instrument of instruments; let i = index">
+				<ng-template carouselSlide>
+					<div class="card ins-card" @cardAnimation (click)="selectInstrument(instrument)" *ngIf="instrument">
+						<img [src]="instrument.imageURL" class="card-img-top" alt="..." style="min-height:250px">
+						<div class="card-body">
+							<div class="_addons">
+								<div class="_top">
+									<div class="_cap">Lowest Available Price</div>
+									<div class="_val">&nbsp;{{instrument.lowestPrice | iDecimal:'p':instrument.decimals}}&nbsp;</div>
+								</div>
+								<div class="_bottom" [ngStyle]="appService.$brand.actionStyle">
+									{{bidService.topic.brand.buttonText}}
+								</div>
+							</div>
+
+
+							<table class="tbl-ins-info">
+								<tr>
+									<th class="font-500">{{instrument.key}}</th>
+									<td class="text-muted-light">&nbsp;</td>
+								</tr>
+								<tr>
+									<th class="text-dbl" style="vertical-align:middle;">{{instrument.name}}</th>
+									<td class="text-dbl" [ngStyle]="appService.$brand.foreStyle" style="padding-bottom:10px;">
+										<div style="font-size:12px;" class="text-muted-light">Rating</div>
+										<div style="line-height:20px;">{{instrument.rating}}</div>
+									</td>
+								</tr>
+								<tr>
+									<th>Last Price</th>
+									<td class="text-black">{{instrument.marketRate | iDecimal:'p':instrument.decimals}}</td>
+								</tr>
+								<tr>
+									<th>Investors</th>
+									<td class="text-black">{{instrument.investors}}</td>
+								</tr>
+								<tr>
+									<th>Invested</th>
+									<td class="text-black">{{instrument.invested}}%</td>
+								</tr>
+							</table>
+						</div>
+					</div>
+				</ng-template>
+			</ng-container>
+		</owl-carousel-o>
+	</div>
+
+
+	<!--<div class="card-deck" [@listStagger]='bidService.instruments.length'>
+		<div class="card mb-4" *ngFor="let ins of bidService.instruments; let i = index">
+			<img [src]="ins.imageURL" class="card-img-top" alt="...">
+			<div class="card-body">
+				<h5 class="card-title" (click)="selectInstrument(ins)">{{ins.name}}</h5>
+				<p class="card-text">{{ins.description}}</p>
+				<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+			</div>
+		</div>
+	</div>-->
+</div>

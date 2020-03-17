@@ -1,0 +1,35 @@
+
+:host{
+	position:relative;
+	display:block;
+	padding:25px 0 15px 0;
+}
+
+.mat-dialog-actions {
+	align-items: center;
+	justify-content: center;
+	padding-top:25px;
+	button {
+		min-width: 80px;
+	}
+
+	button + button {
+		margin: 0 10px 0 0;
+	}
+	
+}
+
+._content{
+	font-size:22px;
+	text-align:center;
+}
+._content-sm {
+	font-size: 20px;
+	text-align: center;
+}
+
+.close-button {
+	position: absolute;
+	left: -16px;
+	top: -16px;
+}

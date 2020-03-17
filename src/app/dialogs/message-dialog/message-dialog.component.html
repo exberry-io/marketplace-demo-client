@@ -1,0 +1,57 @@
+
+
+<button class="close-button" mat-icon-button mat-dialog-close cdkFocusInitial>
+    <mat-icon aria-label="Close Dialog">close</mat-icon>
+</button>
+
+<ng-container [ngSwitch]="mode" dir="rtl">
+    <div mat-dialog-content *ngSwitchCase="'prompt'">
+        <div *ngIf="data.content" class="_content">{{data.content | translate}}</div>
+
+        <mat-form-field class="w-100" appearance="outline" *ngIf="!data.numeric">
+            <mat-label>{{data.label  | translate}}</mat-label>
+            <input autocomplete="off" matInput placeholder="{{data.palceholder | translate}}" [(ngModel)]="value" name="value" required>
+        </mat-form-field>
+        <mat-form-field class="w-100" appearance="outline" *ngIf="data.numeric">
+            <mat-label>{{data.label  | translate}}</mat-label>
+            <input autocomplete="off" matInput placeholder="{{data.palceholder | translate}}" [(ngModel)]="value" name="value" required type="tel" pattern="[0-9]*" [maxlength]="data.maxLength || 4">
+        </mat-form-field>
+    </div>
+
+    <div mat-dialog-content *ngSwitchDefault>
+        <div *ngIf="data.content" class="_content-sm">{{data.content | translate}}</div>
+    </div>
+</ng-container>
+
+<ng-container [ngSwitch]="mode">
+    <div mat-dialog-actions *ngSwitchCase="'alert'">
+        <button type="button" mat-flat-button color="accent" [mat-dialog-close]="true" class="rounded" style="min-width: 120px;">
+            {{(data.confirmText || 'OK') | translate}}
+        </button>
+    </div>
+
+
+    <div mat-dialog-actions *ngSwitchCase="'confirm'">
+        <button type="button" mat-stroked-button color="accent" [mat-dialog-close]="false" class="rounded">
+            {{(data.cancelText || 'Cancel') | translate}}
+        </button>
+        <div style="width:20px;"></div>
+        <button type="button" mat-flat-button color="accent" [mat-dialog-close]="true" class="rounded">
+            {{(data.confirmText || 'OK') | translate}}
+        </button>
+    </div>
+
+    <div mat-dialog-actions *ngSwitchCase="'prompt'">
+        <button type="button" mat-stroked-button color="accent" [mat-dialog-close]="false" class="rounded">
+            {{(data.cancelText || 'Cancel') | translate}}
+        </button>
+        <button type="button" mat-flat-button color="accent" [mat-dialog-close]="value" class="rounded">
+            {{(data.confirmText || 'OK') | translate}}
+        </button>
+    </div>
+
+
+</ng-container>
+
+
+

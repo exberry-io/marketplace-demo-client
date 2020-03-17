@@ -1,0 +1,29 @@
+
+@import '~ngx-toastr/toastr';
+
+$accent-up-color: #00C6B2;
+$accent-down-color: #F23567;
+
+.trend-up-fg {
+	color: $accent-up-color
+}
+
+.trend-up-bg {
+	background-color: $accent-up-color
+}
+
+.trend-down-fg {
+	color: $accent-down-color
+}
+
+.trend-down-bg {
+	background-color: $accent-down-color
+}
+
+.txt-trend-up {
+	color: $accent-up-color !important;
+}
+
+.txt-trend-down {
+	color: $accent-down-color !important;
+}

@@ -1,0 +1,146 @@
+[
+	{
+		"value": {
+			"wsEndPoint": "wss://exchange.om2.com",
+			"secret": "mcrrSDn00tEvi44H2pl58rAHEI7pbfS3mgsSYDWkm4vmrGRQ7Rhm4dP27ZAz",
+			"apiKey": "pZnMFPxf6dGTCr2lElwJyv5qaHjHcPde4wT2bQ65q9Gt0cNZwMgBHx5hT253",
+			"user": {
+				"name": "Saul Simon",
+				"ipAddress": "127.0.0.1",
+				"currency": "EUR",
+				"userId": "1"
+			},
+			"exchangeURL": "http://exchange.oridemo.com/",
+			"topics": [
+				{
+					"id": "jewls",
+					"name": "Invest In Jewls",
+					"brand": {
+						"foreColor": "#FF7878",
+						"backColor": "rgba(255, 193, 193, 0.65)"
+					},
+					"home": {
+						"title": "ART",
+						"description": "Choose which property to buy Bricks in (or use Smart Invest). Our range of properties is carefully selected by our specialist Property Team based on growth potential.",
+						"image": "/assets/imgs/splash.jpg"
+					},
+					"instruments": [
+						{
+							"key": "INS1",
+							"name": "Gold Necklace",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck1-a.jpg", "/assets/imgs/neck1-b.jpg", "/assets/imgs/neck1-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS2",
+							"name": "Diamond Necklace",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck2-a.jpg", "/assets/imgs/neck2-b.jpg", "/assets/imgs/neck2-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS3",
+							"name": "Pearl Necklace",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck3-a.jpg", "/assets/imgs/neck3-b.jpg", "/assets/imgs/neck3-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS4",
+							"name": "Old Necklace",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck4-a.jpg", "/assets/imgs/neck4-b.jpg", "/assets/imgs/neck4-c.jpg" ],
+							"trendValue": 5.3
+						}
+					]
+				},
+				{
+					"id": "re",
+					"name": "Invest In Real Estate",
+					"brand": {
+						"foreColor": "#009A34",
+						"backColor": "rgba(0, 154, 52, 0.65)",
+						"actionColor": "#fff"
+					},
+					"home": {
+						"title": "Real Estate",
+						"description": "Choose which property to buy Bricks in (or use Smart Invest). Our range of properties is carefully selected by our specialist Property Team based on growth potential.",
+						"image": "/assets/imgs/splash.jpg"
+					},
+					"instruments": [
+						{
+							"key": "INS1",
+							"name": "Big House",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck1-a.jpg", "/assets/imgs/neck1-b.jpg", "/assets/imgs/neck1-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS2",
+							"name": "Small House",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck2-a.jpg", "/assets/imgs/neck2-b.jpg", "/assets/imgs/neck2-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS3",
+							"name": "Penthouse",
+							"rounding": "down",
+							"decimalPrecision": "2",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck3-a.jpg", "/assets/imgs/neck3-b.jpg", "/assets/imgs/neck3-c.jpg" ],
+							"trendValue": 5.3
+						},
+						{
+							"key": "INS4",
+							"name": "Modern Palace",
+							"rounding": "down",
+							"decimalPrecision": "8",
+							"description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec at justo aliquam, convallis leo id, pretium lacus. Duis ac metus dictum, blandit magna.",
+							"rating": 8.9,
+							"investors": 711,
+							"invested": 55,
+							"images": [ "/assets/imgs/neck4-a.jpg", "/assets/imgs/neck4-b.jpg", "/assets/imgs/neck4-c.jpg" ],
+							"trendValue": 5.3
+						}
+					]
+				}
+			]
+		},
+		"key": "metaData.json"
+	}
+]

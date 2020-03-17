@@ -1,0 +1,97 @@
+
+.dxm-tooltip{
+	z-index:1100;
+}
+
+.dxc-tooltip {
+	z-index: 1100;
+}
+
+.mat-tab-label.mat-tab-label-active {
+	opacity:1;
+}
+
+
+.mat-icon-button.base {
+	width: 30px;
+	height: 30px;
+	flex-shrink: 0;
+	line-height: 30px;
+
+
+}
+
+@mixin md-icon-size($size: 24px) {
+	font-size: $size;
+	height: $size;
+	width: $size;
+	line-height: $size !important;
+}
+
+mat-icon {
+
+	&.xs {
+		@include md-icon-size(12px);
+	}
+
+	&.sm {
+		@include md-icon-size(14px);
+	}
+
+	&.base {
+		@include md-icon-size(16px);
+	}
+
+	&.md {
+		@include md-icon-size(20px);
+	}
+
+	&.lg {
+		@include md-icon-size(30px);
+	}
+
+	&.xl {
+		@include md-icon-size(40px);
+	}
+
+	&.xl2 {
+		@include md-icon-size(60px);
+	}
+
+	&.xxl {
+		@include md-icon-size(180px);
+	}
+}
+
+.bt-dark{
+	background:#000 !important;
+}
+
+.mat-flat-button{
+	border-radius:0 !important;
+}
+.form-control {
+	border-radius: 0;
+}
+
+.mat-menu-item.active{
+	background-color:#eee;
+}
+
+.form-control._no-focus:focus {
+	box-shadow: none;
+}
+
+._btn-inner {
+}
+
+
+.toast-success {
+	background-color: #1accba;
+	background-image: url(/assets/images/toast-success.png)
+}
+
+.toast-error {
+	background-color: #ff8686;
+	background-image: url(/assets/images/toast-error.png)
+}

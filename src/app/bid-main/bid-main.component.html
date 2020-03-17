@@ -1,0 +1,61 @@
+
+
+
+<div class="main-toolbar b-b" [class.b-bx]="bidService.instrument?.key">
+	<div class="layout-container">
+		<div class="_inner">
+			<img class="_logo" src="/assets/logo.png" (click)="goHome()"/>
+			<div class="_title">
+				<ng-container *ngIf="bidService.instrument?.key">
+					<!--<a class="_title" [ngStyle]="appService.$brand.foreStyle" (click)="goHome()">Home</a>-->
+					<div class="hidden-small" [matMenuTriggerFor]="insMenu" [ngStyle]="appService.$brand.foreStyle">
+						<div>{{bidService.instrument.name}}</div>
+						<mat-icon class="base">expand_more</mat-icon>
+					</div>
+				</ng-container>
+
+				<mat-menu #insMenu="matMenu" xPosition="before" [overlapTrigger]="false">
+					<button mat-menu-item  *ngFor="let ins of bidService.instruments;" (click)="goToInstrument(ins)" [class.active]="ins.key == bidService.instrument?.key">
+						<span>{{ins.name}}</span>
+					</button>
+				</mat-menu>
+			</div>
+
+			<div class="_bar hidden-small">
+				<button mat-button (click)="goHome()" [class.active]="mode == 'instruments'">Assets</button>
+				<button mat-button (click)="goToInvestments()" [class.active]="mode == 'investments'">My Account</button>
+				<button mat-button>How It Works</button>
+				<button mat-button>About</button>
+				<button mat-button>News</button>
+			</div>
+
+			<button class="user-btn " mat-button [matMenuTriggerFor]="signInMenu">
+				<div class="_btn-inner">
+					{{dataService.user.name}}
+					<mat-icon class="base" >expand_more</mat-icon>
+				</div>
+			</button>
+			<mat-menu #signInMenu="matMenu" xPosition="before" [overlapTrigger]="false" class="topbar-menu" >
+				<button mat-menu-item *ngFor="let topic of dataService.meta.topics" (click)="selectTopic(topic.id)" [class.active]="topic.id == bidService.topicId">
+					<mat-icon svgIcon="cubes" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
+					<span>{{topic.name}}</span>
+				</button>
+				<button mat-menu-item (click)="gotoExchange()" *ngIf="dataService.meta.exchangeURL" class="border-top">
+					<mat-icon svgIcon="user-chart" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
+					<span>Exberry Exchange...</span>
+				</button>
+				<button mat-menu-item class="border-top">
+					<mat-icon svgIcon="sign-out" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
+					<span>Logout</span>
+				</button>
+			</mat-menu>
+		</div>
+	</div>
+</div>
+
+
+<ng-container *ngIf="!loading" [ngSwitch]="mode">
+	<app-bid-instrument *ngSwitchCase="'instrument'"></app-bid-instrument>
+	<app-bid-investments *ngSwitchCase="'investments'"></app-bid-investments>
+	<app-bid-instruments *ngSwitchCase="'instruments'"></app-bid-instruments>
+</ng-container>

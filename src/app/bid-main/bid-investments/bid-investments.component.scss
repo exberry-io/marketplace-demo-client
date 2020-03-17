@@ -1,0 +1,161 @@
+
+
+
+
+.body-container {
+	width:100%;
+	max-width: 1200px;
+	padding: 0 15px;
+	margin: 0 auto;
+	display:block;
+	position:relative;
+	height: calc(100vh - 85px);
+	top:85px;
+	&._body {
+		padding-top: 85px;
+		padding-bottom: 30px;
+		min-height: 950px;
+	}
+}
+
+.tabs-headers {
+	box-sizing: border-box;
+	display: flex !important;
+	justify-content: flex-start !important;
+	align-items: center !important;
+	border-bottom: 1px solid rgba(255,255,255,0.1);
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	top: 0;
+	height: 32px;
+	z-index: 2;
+	background: rgba(255, 255, 255, 0.06);
+
+	> button {
+		min-width: 180px;
+		margin: 0;
+		height: 32px;
+		line-height: 32px;
+		border-radius: 0;
+		position: relative;
+		font-size: 16px;
+		height: 50px;
+
+		&:after {
+			content: '';
+			position: absolute;
+			bottom: 0;
+			height: 1px;
+			background-color: #000;
+			width: 0px;
+			left: 50%;
+			transition: all ease-in-out 0.3s;
+		}
+
+		&.active {
+			&:after {
+				left: 0;
+				width: 180px;
+			}
+		}
+	}
+}
+
+.tabs-body {
+	position: absolute;
+	left: 15px;
+	right: 15px;
+	top: 50px;
+	bottom: 0;
+	z-index: 1;
+	overflow: hidden;
+}
+
+
+.table-container {
+	height: 100%;
+	overflow: auto;
+
+	> table {
+		width: 100%;
+	}
+}
+
+.mat-column-image {
+	flex: 0 0 110px;
+	width: 110px;
+
+}
+
+.mat-column-name,
+.mat-column-weight,
+.mat-column-symbol,
+.mat-column-size,
+.mat-column-value,
+.mat-column-entryPrice,
+.mat-column-markPrice,
+.mat-column-symbol,
+.mat-column-position {
+	flex: 0 0 100px;
+	width: 180px;
+}
+
+
+$bg-forground: #ffffff;
+$bg-background: #eeeeee;
+$border-color: #cccccc;
+
+.exchange-table {
+	background: $bg-forground !important;
+
+	tr.mat-footer-row, tr.mat-row {
+		height: 32px;
+		/*&.selected{
+			background:$bg-selected;
+		}*/
+		//&:nth-of-type(even) {
+		&:hover {
+			background-color: $bg-background;
+		}
+		/*&:hover {
+		  background-color: rgba(255, 255, 255, 0.075);
+		}*/
+	}
+
+	td.mat-cell, td.mat-footer-cell, th.mat-header-cell {
+		border-width: 0;
+		font-size: 14px;
+	}
+
+	tr.mat-header-row {
+		height: 40px;
+
+		> th.mat-header-cell {
+			padding-bottom: 1px;
+
+			&:before {
+				content: '';
+				position: absolute;
+				left: 0;
+				width: 100%;
+				bottom: 0;
+				height: 1px;
+				background: $border-color;
+			}
+		}
+	}
+}
+
+.bt-sm {
+	height: 26px;
+	line-height: 26px;
+	padding: 0 12px;
+	border-radius:0;
+	font-size:14px;
+	color:#fff;
+}
+
+.mat-cell, .mat-footer-cell {
+	color: rgba(0,0,0,1);
+}
