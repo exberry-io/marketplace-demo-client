@@ -28,7 +28,7 @@
     "highcharts": "^8.0.0",
     "highcharts-angular": "^2.4.0",
     "jquery": "^3.4.0",
-    "lodash": "^4.17.15",
+    "lodash": "^4.17.19",
     "ng-block-ui": "^2.1.8",
     "ngx-owl-carousel-o": "^2.0.3",
     "ngx-toastr": "^11.3.2",
