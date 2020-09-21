@@ -304,7 +304,7 @@ export class BidService {
 
 		if (message.eventTimestamp) {
 			//debugger;
-			message.eventTimestamp = message.eventTimestamp / 1000;
+			message.eventTimestamp = message.eventTimestamp / 1000000;
 		}
 
 		let activeOrders = bucket.activeOrders;
