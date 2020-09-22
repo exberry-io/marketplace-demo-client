@@ -124,47 +124,51 @@
 		<div class="card _instrument-card" @cardAnimation>
 			<div class="card-header">Order Book</div>
 			<div class="card-body _order-book" style="min-height:250px; ">
-				<table class="table table-borderless ob-buy">
-					<thead>
-						<tr>
-							<th>Volume</th>
-							<th>Bid</th>
-							<th>&nbsp;</th>
-						</tr>
-					</thead>
-					<tbody class="trend-up-fg">
-						<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Buy' } | reverseOrder | slice:0:8" (click)="injectOrder(row)" >
-							<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
-							<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
-							<td class="_bar">
-								<div class="bar">
-									<div class="bar-content trend-up-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
-								</div>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<div>
+					<table class="table table-borderless ob-buy">
+						<thead>
+							<tr>
+								<th>Volume</th>
+								<th>Bid</th>
+								<th>&nbsp;</th>
+							</tr>
+						</thead>
+						<tbody class="trend-up-fg">
+							<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Buy' } | reverseOrder | slice:0:8" (click)="injectOrder(row)">
+								<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
+								<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
+								<td class="_bar">
+									<div class="bar">
+										<div class="bar-content trend-up-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
+									</div>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 
-				<table class="table table-borderless ob-sell">
-					<thead>
-						<tr>
-							<th>&nbsp;</th>
-							<th>Ask</th>
-							<th>Volume</th>
-						</tr>
-					</thead>
-					<tbody class="trend-down-fg">
-						<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Sell' } | slice:0:8" (click)="injectOrder(row)" >
-							<td class="_bar">
-								<div class="bar">
-									<div class="bar-content trend-down-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
-								</div>
-							</td>
-							<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
-							<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
-						</tr>
-					</tbody>
-				</table>
+				<div>
+					<table class="table table-borderless ob-sell">
+						<thead>
+							<tr>
+								<th>&nbsp;</th>
+								<th>Ask</th>
+								<th>Volume</th>
+							</tr>
+						</thead>
+						<tbody class="trend-down-fg">
+							<tr *ngFor="let row of instrument.orderBook | filterBy: { side: 'Sell' } | slice:0:8" (click)="injectOrder(row)">
+								<td class="_bar">
+									<div class="bar">
+										<div class="bar-content trend-down-bg" [ngStyle]="{width:row.barQ + '%'}"></div>
+									</div>
+								</td>
+								<td class="_val">{{row.price | iDecimal:'p':instrument.decimals}}</td>
+								<td class="_val">{{row.quantity | iDecimal:'p':instrument.decimals}}</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 		</div>
 

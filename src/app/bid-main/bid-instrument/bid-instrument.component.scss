@@ -226,13 +226,16 @@
 	align-items: flex-start;
 	padding: 0 0;
 
+	> div {
+		flex: 1 1 0px
+	}
+
 	table {
-		flex-grow: 1;
 		margin-bottom: 0;
 
 		th {
 			font-size: 20px;
-			font-weight:normal;
+			font-weight: normal;
 		}
 
 		td {
@@ -249,22 +252,22 @@
 			padding: 0 5px;
 
 			> .bar {
-				width:100%;
-				position:relative;
-				height:15px;
+				width: 100%;
+				position: relative;
+				height: 15px;
 
 				> .bar-content {
 					display: inline-block;
 					height: 5px;
-					top:-5px;
+					top: -5px;
 					position: relative;
 				}
 			}
 		}
 
-		tr:hover{
-			td{
-				background:#fafafa;
+		tr:hover {
+			td {
+				background: #fafafa;
 			}
 		}
 	}
