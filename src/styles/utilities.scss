@@ -100,8 +100,15 @@ a {
 	border-left: 4px solid transparent;
 }
 
+.visible-small {
+	display: none !important;
+}
+
 @media (max-width: 800px){
 	.hidden-small {
 		display: none !important;
+	}
+	.visible-small {
+		display: block !important;
 	}
 } 

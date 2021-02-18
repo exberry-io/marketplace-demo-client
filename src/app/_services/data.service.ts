@@ -13,6 +13,7 @@ import * as _ from 'lodash';
 export class DataService {
 
 	appConfig = environment.appConfig;
+	users: any = null;
 	user: any = {};
 	meta: any = {};
 
@@ -30,11 +31,57 @@ export class DataService {
 	//api
 	//-------------------------------------------------------------->
 
+	restoreUser() {
+		try {
+			let sUser: any = localStorage.getItem('user');
+			if (!sUser) throw ({});
+			let user: any = JSON.parse(sUser);
+			if (!_.isObject(user)) throw ({});
+			return user;
+		} catch (e) {
+			localStorage.removeItem('user');
+			return null;
+		}
+	}
+
 	public restoreSignIn(credentials?) {
-		return this.getSimulated('account').then(response => {
-			this.user = response;
-			return this.user;
+		let user:any = this.restoreUser();
+		if (!user) return Promise.reject();
+		return this.getClean('https://sanity.demo.exberry.io/ui-demo/users.json').then(ret => ret.users).then(users => {
+			let fUser = _.find(users, _user => {
+				return _user.apiKey.indexOf(user.apiKey) != -1
+			});
+			if (fUser) {
+				return this.prepareUser(fUser);
+			}
+			throw ({});
 		});
+	}
+
+	signIn(credentials) {
+		return this.getClean('https://sanity.demo.exberry.io/ui-demo/users.json').then(ret => ret.users).then(users => {
+			let fUser = _.find(users, (user) => {
+				return user.name.toLowerCase() == credentials.name.toLowerCase() && user.apiKey.indexOf(credentials.password) != -1;
+			});
+			if (fUser) {
+				return this.prepareUser(fUser);
+			}
+			if (!fUser) throw ({ message: 'Invalid user name or password' })
+			return fUser
+		});
+	}
+
+	prepareUser(user) {
+		let pUser = _.assignIn({
+			"userId": "1",
+			"currency": "EUR",
+			"name": "Saul Simon",
+			"ipAddress": "127.0.0.1",
+			"balance": 150000
+		}, user);
+		this.user = pUser;
+		localStorage.setItem("user", `{"apiKey":"${user.apiKey}"}`);
+		return pUser;
 	}
 
 	metaSimulated: boolean = false;
@@ -42,13 +89,25 @@ export class DataService {
 		let that = this;
 		if (this.metaSimulated) return this.getSimulated('metaData').then(preparMetaData);
 		else {
-			return this.getClean('https://sanity.demo.exberry.io/ui-demo/marketplace-metaData.json').then(res => { return preparMetaData([{ value: res }]) });
+			let sURL = this.user.metadata;
+			if (!sURL) {
+				this.appService.alert({
+					title: this.appService.translate('error_title'),
+					content: this.appService.translate('error_invalid_sign_in_credentials')
+				});
+				return Promise.reject();
+			}
+
+			return this.getClean(sURL).then(res => { return preparMetaData([{ value: res }]) }).catch(err => {
+				this.appService.alert({
+					title: this.appService.translate('error_title'),
+					content: this.appService.translate('error_invalid_sign_in_credentials')
+				});
+			});
 		}
 
 		function preparMetaData(response) {
 			let meta = that.meta = _.get(response, '[0].value');
-
-			that.user = meta.user;
 			if (!that.user.balance) that.user.balance = 150000;
 
 			_.each(meta.topics, topic => {

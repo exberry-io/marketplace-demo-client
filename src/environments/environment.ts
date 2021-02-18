@@ -3,6 +3,7 @@ export const environment = {
 	appConfig: {
 		endPoint: "",
 		host: "",
-		locale: "en-US"
+		locale: "en-US",
+		idDev: true
 	}
 };

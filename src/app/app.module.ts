@@ -26,6 +26,7 @@ import { BidMainComponent } from './bid-main/bid-main.component';
 import { BidInstrumentsComponent } from './bid-main/bid-instruments/bid-instruments.component';
 import { BidInstrumentComponent } from './bid-main/bid-instrument/bid-instrument.component';
 import { BidInvestmentsComponent } from './bid-main/bid-investments/bid-investments.component';
+import { SignInComponent } from './sign-in/sign-in.component';
 
 
 @NgModule({
@@ -48,6 +49,7 @@ import { BidInvestmentsComponent } from './bid-main/bid-investments/bid-investme
 		BidInstrumentsComponent,
 		BidInstrumentComponent,
 		BidInvestmentsComponent,
+		SignInComponent,
 	],
 	imports: [
 		BrowserModule,

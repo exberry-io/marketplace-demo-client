@@ -1,0 +1,30 @@
+<div class="video_container">
+	<!--<video playsinline="playsinline" autoplay="autoplay" muted="muted" loop="loop">
+		<source src="https://media.istockphoto.com/videos/seamless-loop-clouds-video-id658065514" type="video/mp4">
+	</video>-->
+	<div class="overlay"></div>
+</div>
+
+<div class="d-flex flex-column justify-content-center align-items-center w-100 h-100">
+
+	<form (ngSubmit)="_signIn(signInForm)" #signInForm="ngForm" class="signin-container mat-elevation-z1" style="max-width:320px">
+		<div class="logo"></div>
+		<mat-form-field color="accent">
+			<input autocomplete="off" matInput [placeholder]="'Name'" [(ngModel)]="formModel.name" name="name" type="text" required class="ltr-field">
+			<mat-icon matSuffix (click)="formModel.name = null" *ngIf="formModel.name">close</mat-icon>
+		</mat-form-field>
+
+		<mat-form-field color="accent">
+			<input autocomplete="new-password" matInput minlength="5" [placeholder]="appService.translate('password')"
+				   [type]="hidePassword ? 'password' : 'text'"
+				   #password
+				   [(ngModel)]="formModel.password" name="password" required class="ltr-field">
+			<mat-icon matSuffix (click)="formModel.password = null" *ngIf="formModel.password" class="mr-2">close</mat-icon>
+			<mat-icon matSuffix (click)="hidePassword = !hidePassword">{{hidePassword ? 'visibility_off' : 'visibility'}}</mat-icon>
+		</mat-form-field>
+		<div class="pt-4">
+			<button mat-flat-button color="accent" class="btn-block" type="submit" style="min-height:60px; font-size:20px">{{'login' | translate}}</button>
+		</div>
+	</form>
+
+</div>

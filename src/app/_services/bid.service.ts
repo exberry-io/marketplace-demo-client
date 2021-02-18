@@ -184,8 +184,8 @@ export class BidService {
 	}
 
 	private startSession() {
-		let secret = this.dataService.meta.secret;
-		let apiKey = this.dataService.meta.apiKey;
+		let secret = this.dataService.user.secret;
+		let apiKey = this.dataService.user.apiKey;
 		let timeStamp = new Date().valueOf();
 		let message = `"apiKey":"${apiKey}","timestamp":"${timeStamp}"`;
 		let signature = crypto.HmacSHA256(message, secret).toString();
@@ -309,6 +309,7 @@ export class BidService {
 
 		let activeOrders = bucket.activeOrders;
 		let bookOrder;
+		let userId = this.dataService.user.mpId;
 		switch (message.messageType) {
 			case "Add":
 				message.filled = 0;
@@ -327,14 +328,29 @@ export class BidService {
 				break;
 			case "Executed":
 				let executedOrders = bucket.executedOrders;
-				
-				if (executedOrders.length > 200) {
-					executedOrders.splice(200, 1);
+				if (message.makerMpId == userId || message.takerMpId == userId) {
+					
+					let addMessage = _.find(activeOrders, { orderId: message.makerOrderId });
+					message._ex = true;
+					if (message.makerMpId == userId) {
+						message._side = addMessage && addMessage.side;
+						message._orderId = message.makerOrderId;
+						message._mpId = message.makerMpId;
+					} else {
+						message._side = addMessage && addMessage.side == 'Buy' ? 'Sell' : 'Buy';
+						message._orderId = message.takerOrderId;
+						message._mpId = message.takerMpId;
+					}
+				}
+
+				if (executedOrders.length > 400) {
+					executedOrders.splice(400, 1);
 				}
 				executedOrders.push(message);
 
 				this.sortExecutedOrders(bucket);
 				this.executedOrdersChangedSource.next(message);
+
 				this.processMarketRateEvent(bucket, { price: message.executedPrice });
 				
 				for (var _index = 0; _index < activeOrders.length; _index++) {

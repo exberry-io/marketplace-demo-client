@@ -39,7 +39,6 @@ export class BidMainComponent implements OnInit, OnDestroy {
 		this.bidService.instrumentInstanceId = null;
 		this.bidService.stop();
 	}
-
 	
 	ngOnInit() {
 		this.parametersObservable = this.route.params.subscribe(params => {
@@ -49,6 +48,10 @@ export class BidMainComponent implements OnInit, OnDestroy {
 			if (!this.loaded || topicId != this.bidService.topicId) this.init(topicId, instrumentId, mode);
 			else this.selectInstrument(instrumentId, mode);
 		});
+	}
+
+	logOut() {
+		this.router.navigate(['/sign-in']);
 	}
 
 	init(topicId, instrumentId?, mode?) {

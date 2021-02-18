@@ -42,8 +42,8 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 	}
 
 	tables: any = [
-		{ id: "activeOrders", name: "Active Orders", displayedColumns: ['image','instrument', 'side', 'quantity', 'price', 'orderId', 'brokerId', 'spacer'] },
-		{ id: "executedOrders", name: "Executed Orders", displayedColumns: ['image','instrument', 'makerOrderId', 'takerOrderId', 'executedPrice', 'executedQuantity', 'eventTimestamp'] },
+		{ id: "activeOrders", name: "Active Orders", displayedColumns: ['image', 'instrument', 'side', 'quantity', 'price', 'orderId', 'mpId', 'spacer'] },
+		{ id: "executedOrders", name: "Executed Orders", displayedColumns: ['image', 'instrument', 'side', 'executedQuantity', 'executedPrice', 'orderId', 'mpId', 'eventTimestamp'] },
 	];
 	tablesMap: any;
 	selectedTable: any = this.tables[0];
@@ -88,8 +88,10 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 
 	getActiveOrders() {
 		let arr = [];
+		let userId = this.dataService.user.mpId;
 		_.each(this.bidService.instruments, instrument => {
-			arr = arr.concat(instrument.activeOrders);
+			let orders = _.filter(instrument.activeOrders, order => order.mpId == userId);
+			arr = arr.concat(orders);
 		});
 		this.activeOrders = arr;
 		this.sortActiveOrders();
@@ -98,7 +100,8 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 	getExecutedOrders() {
 		let arr = [];
 		_.each(this.bidService.instruments, instrument => {
-			arr = arr.concat(instrument.executedOrders);
+			let orders = _.filter(instrument.executedOrders, order => order._ex);
+			arr = arr.concat(orders);
 		});
 		this.executedOrders = arr;
 		this.sortExecutedOrders();
@@ -110,7 +113,6 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 	}
 
 	cancelOrder(order) {
-		debugger;
 		if (order.closing) return;
 		order.closing = true;
 

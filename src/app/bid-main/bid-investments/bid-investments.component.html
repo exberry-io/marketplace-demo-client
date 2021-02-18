@@ -34,26 +34,31 @@
 								</a>
 							</td>
 						</ng-container>
+
 						<ng-container matColumnDef="side">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Side</th>
 							<td mat-cell *matCellDef="let element"> {{element.side}} </td>
 						</ng-container>
+
 						<ng-container matColumnDef="quantity">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
 							<td mat-cell *matCellDef="let element" class="numeric" [ngClass]="{'txt-trend-down':element.side == 'Sell', 'txt-trend-up': element.side !== 'Sell'}">
 								{{(element.side == 'Sell' ? element.quantity * -1 : element.quantity) | iDecimal:'q'}}
 							</td>
 						</ng-container>
+
 						<ng-container matColumnDef="price">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
 							<td mat-cell *matCellDef="let element" class="numeric"> {{element.price | iDecimal:'p'}} </td>
 						</ng-container>
+
 						<ng-container matColumnDef="orderId">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Order Id</th>
 							<td mat-cell *matCellDef="let element"> {{element.orderId}} </td>
 						</ng-container>
-						<ng-container matColumnDef="brokerId">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header>Broker Id</th>
+
+						<ng-container matColumnDef="mpId">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>MP Id</th>
 							<td mat-cell *matCellDef="let element"> {{element.mpId}} </td>
 						</ng-container>
 
@@ -92,14 +97,14 @@
 							</td>
 						</ng-container>
 
-						<ng-container matColumnDef="makerOrderId">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header>Maker Order Id</th>
-							<td mat-cell *matCellDef="let element"> {{element.makerOrderId}} </td>
+						<ng-container matColumnDef="side">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>Side</th>
+							<td mat-cell *matCellDef="let element"> {{element._side}} </td>
 						</ng-container>
 
-						<ng-container matColumnDef="takerOrderId">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header>Taker Order Id</th>
-							<td mat-cell *matCellDef="let element"> {{element.takerOrderId}} </td>
+						<ng-container matColumnDef="executedQuantity">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
+							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedQuantity | iDecimal:'p'}} </td>
 						</ng-container>
 
 						<ng-container matColumnDef="executedPrice">
@@ -107,9 +112,14 @@
 							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedPrice | iDecimal:'p'}} </td>
 						</ng-container>
 
-						<ng-container matColumnDef="executedQuantity">
-							<th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
-							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedQuantity | iDecimal:'p'}} </td>
+						<ng-container matColumnDef="orderId">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>Order Id</th>
+							<td mat-cell *matCellDef="let element"> {{element._orderId}} </td>
+						</ng-container>
+
+						<ng-container matColumnDef="mpId">
+							<th mat-header-cell *matHeaderCellDef mat-sort-header>MP Id</th>
+							<td mat-cell *matCellDef="let element"> {{element._mpId}} </td>
 						</ng-container>
 
 						<ng-container matColumnDef="eventTimestamp">

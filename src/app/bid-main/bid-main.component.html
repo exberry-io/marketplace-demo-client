@@ -24,9 +24,9 @@
 			<div class="_bar hidden-small">
 				<button mat-button (click)="goHome()" [class.active]="mode == 'instruments'">Assets</button>
 				<button mat-button (click)="goToInvestments()" [class.active]="mode == 'investments'">My Account</button>
-				<button mat-button>How It Works</button>
+				<!--<button mat-button>How It Works</button>
 				<button mat-button>About</button>
-				<button mat-button>News</button>
+				<button mat-button>News</button>-->
 			</div>
 
 			<button class="user-btn " mat-button [matMenuTriggerFor]="signInMenu">
@@ -36,15 +36,19 @@
 				</div>
 			</button>
 			<mat-menu #signInMenu="matMenu" xPosition="before" [overlapTrigger]="false" class="topbar-menu" >
-				<button mat-menu-item *ngFor="let topic of dataService.meta.topics" (click)="selectTopic(topic.id)" [class.active]="topic.id == bidService.topicId">
-					<mat-icon svgIcon="cubes" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
-					<span>{{topic.name}}</span>
-				</button>
-				<button mat-menu-item (click)="gotoExchange()" *ngIf="dataService.meta.exchangeURL" class="border-top">
+				<ng-container *ngIf="dataService.meta.topics.length > 1">
+					<button mat-menu-item class="border-bottom" *ngFor="let topic of dataService.meta.topics" (click)="selectTopic(topic.id)" [class.active]="topic.id == bidService.topicId">
+						<mat-icon svgIcon="cubes" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
+						<span>{{topic.name}}</span>
+					</button>
+				</ng-container>
+				<!--<button mat-menu-item (click)="gotoExchange()" *ngIf="dataService.meta.exchangeURL" class="border-top">
 					<mat-icon svgIcon="user-chart" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
 					<span>Exberry Exchange...</span>
-				</button>
-				<button mat-menu-item class="border-top">
+				</button>-->
+				<button mat-menu-item class="visible-small border-bottom" (click)="goHome()" [class.active]="mode == 'instruments'">Assets</button>
+				<button mat-menu-item class="visible-small border-bottom" (click)="goToInvestments()" [class.active]="mode == 'investments'">My Account</button>
+				<button mat-menu-item (click)="logOut()">
 					<mat-icon svgIcon="sign-out" class="mr-3 md" [ngStyle]="appService.$brand.foreStyle"></mat-icon>
 					<span>Logout</span>
 				</button>

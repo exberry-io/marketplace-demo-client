@@ -30,15 +30,12 @@ export class AppComponent implements OnInit {
 		let that = this;
 		// Check Session
 		this.dataService.restoreSignIn().then(response => {
-			this.dataService.getMetaData().then(response => {
+			return this.dataService.getMetaData().then(response => {
 				that.loading = false;
-			}).catch(err => {
-				this.appService.alert({ content: "Error loading meta data!" }).then(o => {
-					document.location.reload();
-				})
 			});
-
-			//that.router.navigate(['/hub']);
+		}).catch(err => {
+			this.router.navigate(['/sign-in']);
+			this.loading = false;
 		})
 	}
 }
