@@ -37,13 +37,13 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 	private executedOrdersSubscription: Subscription = null;
 	executedOrders = [];
 	executedOrdersSort: any = {
-		"active": "takerOrderId",
+		"active": "_orderId",
 		"direction": "desc"
 	}
 
 	tables: any = [
 		{ id: "activeOrders", name: "Active Orders", displayedColumns: ['image', 'instrument', 'side', 'quantity', 'price', 'orderId', 'mpId', 'spacer'] },
-		{ id: "executedOrders", name: "Executed Orders", displayedColumns: ['image', 'instrument', 'side', 'executedQuantity', 'executedPrice', 'orderId', 'mpId', 'eventTimestamp'] },
+		{ id: "executedOrders", name: "Executed Orders", displayedColumns: ['image', 'instrument', '_side', 'executedQuantity', 'executedPrice', '_orderId', '_mpId', 'eventTimestamp'] },
 	];
 	tablesMap: any;
 	selectedTable: any = this.tables[0];
