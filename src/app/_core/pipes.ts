@@ -57,7 +57,10 @@ export class InstrumentDecimalPipe {
 
 	transform(val: any, type?: string, decimals=2) {
 		if (!val) return "--";
-		if (type == 'q') return (new DecimalPipe('en')).transform(val, '1.0-2');
+		switch (type) {
+			case "q": return (new DecimalPipe('en')).transform(val, '1.0-5');
+			case "f": return (new DecimalPipe('en')).transform(val, `1.${2}-${decimals}`);
+		}
 		return (new DecimalPipe('en')).transform(val, `1.${decimals}-${decimals}`);
 	}
 }

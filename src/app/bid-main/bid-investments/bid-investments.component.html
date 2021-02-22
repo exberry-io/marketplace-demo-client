@@ -43,13 +43,13 @@
 						<ng-container matColumnDef="quantity">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
 							<td mat-cell *matCellDef="let element" class="numeric" [ngClass]="{'txt-trend-down':element.side == 'Sell', 'txt-trend-up': element.side !== 'Sell'}">
-								{{(element.side == 'Sell' ? element.quantity * -1 : element.quantity)}}
+								{{(element.side == 'Sell' ? element.quantity * -1 : element.quantity) | iDecimal:'f':element.decimals}}
 							</td>
 						</ng-container>
 
 						<ng-container matColumnDef="price">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-							<td mat-cell *matCellDef="let element" class="numeric"> {{element.price | iDecimal:'p'}} </td>
+							<td mat-cell *matCellDef="let element" class="numeric"> {{element.price | iDecimal:'f':element.decimals}} </td>
 						</ng-container>
 
 						<ng-container matColumnDef="orderId">
@@ -104,12 +104,12 @@
 
 						<ng-container matColumnDef="executedQuantity">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Qty</th>
-							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedQuantity}} </td>
+							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedQuantity | iDecimal:'f':element.decimals}} </td>
 						</ng-container>
 
 						<ng-container matColumnDef="executedPrice">
 							<th mat-header-cell *matHeaderCellDef mat-sort-header>Price</th>
-							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedPrice | iDecimal:'p'}} </td>
+							<td mat-cell *matCellDef="let element" class="numeric"> {{element.executedPrice | iDecimal:'f':element.decimals}} </td>
 						</ng-container>
 
 						<ng-container matColumnDef="_orderId">

@@ -109,8 +109,8 @@ export class BidInstrumentComponent implements OnInit, OnDestroy, AfterViewInit 
 
 			this.bidService.placeOrder(this.newOrder).then(response => {
 				this.placingOrder = false;
-				let price = order.orderType == 'Market' ? 'Market Price' : formatNumber(order.price, 'en', '1.2-2')
-				this.bidService.addInfoStack({ 'message': `Order Accepted: ${side} ${formatNumber(order.quantity, 'en', '1.2-2')} Contracts of ${this.bidService.instrument.name} at ${price}.` });
+				let price = order.orderType == 'Market' ? 'Market Price' : formatNumber(order.price, 'en', '1.2-5');
+				this.bidService.addInfoStack({ 'message': `Order Accepted: ${side} ${formatNumber(order.quantity, 'en', '1.0-5')} Contracts of ${this.bidService.instrument.name} at ${price}.` });
 			}).catch(err => {
 				this.placingOrder = false;
 			});

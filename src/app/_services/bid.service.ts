@@ -110,7 +110,8 @@ export class BidService {
 			_.assignIn(instrument, {
 				activeOrders: [],
 				executedOrders: [],
-				orderBook: []
+				orderBook: [],
+				messages: []
 			});
 			if (instrument.marketRate) instrument.marketRate = 0;
 			this.loadImages(instrument.images);
@@ -299,9 +300,10 @@ export class BidService {
 	processorderBookDepth(message) {
 		let bucket = this.data[message.instrument];
 		if (!bucket) return;
+		message.decimals = bucket.decimals;
 		message.instrumentName = bucket.name;
 		message.image = _.get(bucket, 'images[0]', '/assets/icons/info_circle.svg' );
-
+		bucket.messages.push(message);
 		if (message.eventTimestamp) {
 			//debugger;
 			message.eventTimestamp = message.eventTimestamp / 1000000;
@@ -328,23 +330,9 @@ export class BidService {
 				break;
 			case "Executed":
 				let executedOrders = bucket.executedOrders;
-				if (message.makerMpId == userId || message.takerMpId == userId) {
-					
-					let addMessage = _.find(activeOrders, { orderId: message.makerOrderId });
-					message._ex = true;
-					if (message.makerMpId == userId) {
-						message._side = addMessage && addMessage.side;
-						message._orderId = message.makerOrderId;
-						message._mpId = message.makerMpId;
-					} else {
-						message._side = addMessage && addMessage.side == 'Buy' ? 'Sell' : 'Buy';
-						message._orderId = message.takerOrderId;
-						message._mpId = message.takerMpId;
-					}
-				}
 
-				if (executedOrders.length > 400) {
-					executedOrders.splice(400, 1);
+				if (executedOrders.length > 1000) {
+					executedOrders.splice(1000, 1);
 				}
 				executedOrders.push(message);
 

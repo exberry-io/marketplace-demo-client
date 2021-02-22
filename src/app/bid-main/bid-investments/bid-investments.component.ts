@@ -101,7 +101,32 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 		let arr = [];
 		_.each(this.bidService.instruments, instrument => {
 			let orders = _.filter(instrument.executedOrders, order => order._ex);
-			arr = arr.concat(orders);
+			let userId = this.dataService.user.mpId;
+			_.each(instrument.executedOrders, message => {
+				let _message = message;
+				if (message.makerMpId == userId || message.takerMpId == userId) {
+					
+					let addMessage = _.find(instrument.messages, { orderId: message.makerOrderId });
+					if (message.makerMpId == userId) {
+						if (message.takerMpId == userId) {
+							_message = _.cloneDeep(message);
+						}
+						message._side = addMessage && addMessage.side;
+						message._orderId = message.makerOrderId;
+						message._mpId = message.makerMpId;
+						arr.push(message);
+					}
+					if (message.takerMpId == userId) { 
+						_message._side = addMessage && addMessage.side == 'Buy' ? 'Sell' : 'Buy';
+						_message._orderId = _message.takerOrderId;
+						_message._mpId = _message.takerMpId;
+						arr.push(_message);
+					}
+					
+				}
+			})
+
+			//arr = arr.concat(orders);
 		});
 		this.executedOrders = arr;
 		this.sortExecutedOrders();
