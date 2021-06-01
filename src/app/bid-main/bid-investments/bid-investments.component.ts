@@ -42,8 +42,8 @@ export class BidInvestmentsComponent implements OnInit, OnDestroy, AfterViewInit
 	}
 
 	tables: any = [
-		{ id: "activeOrders", name: "Active Orders", displayedColumns: ['image', 'instrument', 'side', 'quantity', 'price', 'orderId', 'mpId', 'spacer'] },
-		{ id: "executedOrders", name: "Executed Orders", displayedColumns: ['image', 'instrument', '_side', 'executedQuantity', 'executedPrice', '_orderId', '_mpId', 'eventTimestamp'] },
+		{ id: "activeOrders", name: this.appService.$brand.activeOrdersText, displayedColumns: ['image', 'instrument', 'side', 'quantity', 'price', 'orderId', 'mpId', 'spacer'] },
+		{ id: "executedOrders", name: this.appService.$brand.executedOrdersText, displayedColumns: ['image', 'instrument', '_side', 'executedQuantity', 'executedPrice', '_orderId', '_mpId', 'eventTimestamp'] },
 	];
 	tablesMap: any;
 	selectedTable: any = this.tables[0];

@@ -111,6 +111,13 @@ export class DataService {
 			if (!that.user.balance) that.user.balance = 150000;
 
 			_.each(meta.topics, topic => {
+
+				topic.brand = _.assignIn({
+					"cancelButtonText": "Cancel Order",
+					"activeOrdersText": "Active Orders",
+					"executedOrdersText": "Executed Orders"
+				}, topic.brand)
+
 				topic.brand.buttonText = _.get(topic, 'brand.buttonText', 'Invest');
 				let foreColor = _.get(topic, 'brand.foreColor', 'rgb(242,189,53)');
 				topic.brand.foreStyle = { color: foreColor }
@@ -122,6 +129,8 @@ export class DataService {
 				} else {
 					topic.brand.actionStyle = { color: '#fff', 'background-color': '#000' }
 				}
+
+				
 
 				_.each(topic.instruments, (instrument, index: number) => {
 					instrument.decimals = instrument.decimalPrecision || 2;
